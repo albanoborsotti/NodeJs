@@ -10,6 +10,7 @@ var user_routes = require('./routes/userR');
 var artist_routes = require('./routes/artistR');
 var album_routes = require('./routes/albumR');
 var song_routes = require('./routes/songR');
+var search_routes = require('./routes/searchR');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use('/api', user_routes);
 app.use('/api', artist_routes); 
 app.use('/api', album_routes); 
 app.use('/api', song_routes); 
+app.use('/api', search_routes); 
 
 
 module.exports = app; 

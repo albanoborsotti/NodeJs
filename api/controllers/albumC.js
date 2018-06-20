@@ -24,6 +24,32 @@ function getAlbum(req, res){
     });
 }
 
+function getAlbumArtist(req,res){
+
+    Artist.find({}).exec((err,artist)=>{
+        if(err){
+            res.status(500).send({message: 'Error en la peticion'}); 
+        }else{
+            if(!artist){
+                res.status(404).send({message: 'No existe el artista'});
+            }else{
+                Album.find({artist:artist}).exec((err,album)=>{
+                    if(err){
+                        res.status(500).send({message: 'Error en la peticion'}); 
+                    }else{
+                        if(!album){
+                            res.status(404).send({message: 'No existe el album'});
+                        }else{
+                            res.status(200).send({artist:artist,album:album});
+                        }
+                    }
+                });
+            }
+        }
+    });
+    
+}
+
 function saveAlbum(req,res){
     var album = new Album();
     var params = req.body;
@@ -173,5 +199,6 @@ module.exports = {
     updateAlbum,
     deleteAlbum,
     uploadImage,
-    getImageFile
+    getImageFile,
+    getAlbumArtist
 }

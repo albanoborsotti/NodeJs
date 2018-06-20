@@ -78,6 +78,7 @@ function saveArtist(req, res){
     var params = req.body;
     artist.name = params.name;
     artist.description = params.description;
+    artist.gender = params.gender;
     artist.image = 'null';
 
     artist.save((err,artistStored) =>{
